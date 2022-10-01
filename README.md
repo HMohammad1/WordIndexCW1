@@ -29,3 +29,14 @@ add filename: Adds the words from that file to the map. Be sure to add the text 
 
 ![image](https://user-images.githubusercontent.com/35733550/193412934-a1bd77bc-bd43-4a86-8a13-cc850997ec53.png)
 
+Results:
+
+![image](https://user-images.githubusercontent.com/35733550/193413529-6352e47c-bebc-44d1-88d5-eb6ed7d24789.png)
+
+As shown in the diagram above the linked list is faster than the HashMap. I’m not entirely sure why this is the case. One reason I think this could be is the fact that each time I call my resize method I must go through the entire HashMap and set it to null. I do this as it is needed for the add position method since it checks what is inside the HashMap at the very start and when first creating the HashMap null isn’t added by default. Though this is also needed for the other methods as null is used to represent that nothing is in the HashMap at that location. Since null is added linearly this could affect the speed of the HashMap. A fix to this could possibly be changing the array type used to contain the HashMap but I’m not sure if it would solve the issue. 
+
+I have found a way to speed up the HashMap quite significantly by changing line 49 in my code to ‘hash = hash *33+ s.charAt(i);’. I didn’t add this in the code submitted as this happens to break some of my own tests for reasons I have yet to figure out BUT all the provided tests still seem to pass with this change. Thus, the new running times is as follows: 
+
+![image](https://user-images.githubusercontent.com/35733550/193413631-8937f8a5-2cc7-43c4-b6ac-5fb6d373fefd.png)
+
+Even though changing this one line of code sped up HashMap it is still slower than the linked list and this could be solved by maybe changing the hash function to something with even fewer collisions. 
